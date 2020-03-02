@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Juttu</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+<style>
+    button{
+        vertical-align: top;
+    }
+</style>
+
+<div id="map">
+<button onclick="onClick()">Nappula</button>
+</div>
+
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ0dHVpIiwiYSI6ImNrNm1oNXlocTBuazIzZmxzbHZlaG02OHYifQ.psK_iOjBfhEOvFdasu4bBg';
+    let coordinates = document.getElementById('coordinates');
+    let map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [24.8, 60.2],
+        zoom: 9
+    });
+
+
+    let marker = new mapboxgl.Marker({
+        draggable: true
+    })
+        .setLngLat([24.8, 60.2])
+        .addTo(map);
+
+    function onDragEnd() {
+        marker.getLngLat();
+    }
+
+    marker.on('dragend', onDragEnd);
+
+    function onClick() {
+        console.log(marker.getLngLat() + prompt("Anna tuntomerkkejä/lisätietoa:"));
+        alert("Kiitos ilmoituksestasi!");
+    }
+    map.addControl(new mapboxgl.NavigationControl());
+
+    map.addControl(
+        new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        })
+    );
+
+
+</script>
+
+</body>
+</html>

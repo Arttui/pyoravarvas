@@ -47,8 +47,10 @@
     marker.on('dragend', onDragEnd);
 
     function onClick() {
-        console.log(marker.getLngLat() + prompt("Anna tuntomerkkejä/lisätietoa:"));
+        let coordinates = marker.getLngLat();
+        localStorage.setItem("coordinates", coordinates);
         alert("Kiitos ilmoituksestasi!");
+        window.location.href = "index.html";
     }
     map.addControl(new mapboxgl.NavigationControl());
 

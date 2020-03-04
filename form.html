@@ -1,141 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Contact Form using JavaScript</title> <!-- Include CSS file here -->
-    <link href="css/form.css" rel="stylesheet">
-    <style>
-        /* Below line is write to use Google font online */
-        @import "http://fonts.googleapis.com/css?family=Ubuntu";
-        div#main{
-            width:830px;
-            height:650px;
-            margin:0 auto;
-            font-family:'Ubuntu',sans-serif
-        }
-        div#form_sample{
-            text-align:center;
-            border:1px solid #ccc;
-            width:300px;
-            padding:0 50px 15px;
-            margin-top:20px;
-            box-shadow:0 0 15px;
-            border-radius:6px;
-            float:left
-        }
-        #main h1{
-            margin-top:40px
-        }
-        hr{
-            margin-top:-5px
-        }
-        label{
-            float:left;
-            font-size:16px
-        }
-        input[type="text"]{
-            width:100%;
-            margin-top:10px;
-            height:35px;
-            margin-bottom:25px;
-            padding:10px;
-            border:3px solid #2BC1F2
-        }
-        textarea{
-            width:100%;
-            border:3px solid #2BC1F2;
-            padding:10px;
-            margin-bottom:25px;
-            margin-top:10px;
-            height:100px;
-            resize:none
-        }
-        input[type="submit"]{
-            width:100%;
-            padding:10px 45px;
-            background-color:#2BC1F2;
-            border:none;
-            color:#fff;
-            font-size:18px;
-            font-weight:700;
-            cursor:pointer;
-            font-family:'Ubuntu',sans-serif
-        }
-    </style>
+	<title>Contact V10</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
 
-<div id="main">
-    <h1>Contact Form using JavaScript</h1>
-    <div id="form_sample"></div> <!-- Include JS file here -->
-    <script src="js/form.js"></script>
-</div>
+
+	<div class="container-contact100">
+
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					Ilmoita Varkaudesta
+				</span>
+
+				<div class="wrap-input100 validate-input" data-validate="Anna nimesi">
+					<input class="input100" type="text" name="name" placeholder="Nimi">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Anna sähköpostisi: e@a.x">
+					<input class="input100" type="text" name="email" placeholder="Sposti">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Anna puhelinnumerosi">
+					<input class="input100" type="text" name="phone" placeholder="Puh.">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Kirjoita viestisi">
+					<textarea id="viesti" class="input100" name="message" ></textarea>
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="container-contact100-form-btn">
+					<button onclick="laheta()" class="contact100-form-btn">
+						<span>
+							<i class="fa fa-paper-plane-o m-r-6" aria-hidden="true"></i>
+							Lähetä
+						</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
 
 
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
-    // Fetching HTML Elements in Variables by ID.
-    var x = document.getElementById("form_sample");
-    var createform = document.createElement('form'); // Create New Element Form
-    createform.setAttribute("action", ""); // Setting Action Attribute on Form
-    createform.setAttribute("method", "post"); // Setting Method Attribute on Form
-    x.appendChild(createform);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    var heading = document.createElement('h2'); // Heading of Form
-    heading.innerHTML = "Contact Form ";
-    createform.appendChild(heading);
-
-    var line = document.createElement('hr'); // Giving Horizontal Row After Heading
-    createform.appendChild(line);
-
-    var linebreak = document.createElement('br');
-    createform.appendChild(linebreak);
-
-    var namelabel = document.createElement('label'); // Create Label for Name Field
-    namelabel.innerHTML = "Your Name : "; // Set Field Labels
-    createform.appendChild(namelabel);
-
-    var inputelement = document.createElement('input'); // Create Input Field for Name
-    inputelement.setAttribute("type", "text");
-    inputelement.setAttribute("name", "dname");
-    createform.appendChild(inputelement);
-
-    var linebreak = document.createElement('br');
-    createform.appendChild(linebreak);
-
-    var emaillabel = document.createElement('label'); // Create Label for E-mail Field
-    emaillabel.innerHTML = "Your Email : ";
-    createform.appendChild(emaillabel);
-
-    var emailelement = document.createElement('input'); // Create Input Field for E-mail
-    emailelement.setAttribute("type", "text");
-    emailelement.setAttribute("name", "demail");
-    createform.appendChild(emailelement);
-
-    var emailbreak = document.createElement('br');
-    createform.appendChild(emailbreak);
-
-    var messagelabel = document.createElement('label'); // Append Textarea
-    messagelabel.innerHTML = "Your Message : ";
-    createform.appendChild(messagelabel);
-
-    var texareaelement = document.createElement('textarea');
-    texareaelement.setAttribute("name", "dmessage");
-    createform.appendChild(texareaelement);
-
-    var messagebreak = document.createElement('br');
-    createform.appendChild(messagebreak);
-
-    var submitelement = document.createElement('input'); // Append Submit Button
-    submitelement.setAttribute("type", "submit");
-    submitelement.setAttribute("name", "dsubmit");
-    submitelement.setAttribute("value", "Submit");
-    submitelement.onclick = function (){
-        var mail = document.createElement("a");
-        mail.href = "mailto:arttui@metropolia.fi";
-        mail.click();
-    }
-    createform.appendChild(submitelement);
+  gtag('config', 'UA-23581568-13');
+  let coordinates = localStorage.getItem("coordinates");
+  document.getElementById("viesti").innerHTML = "Pyörän sijainti: " + coordinates;
 
 
+  function laheta(){
+	  let mail = document.createElement("a");
+	  mail.href = "mailto:arttui@metropolia.fi?subject=subjekti&body=message goes here";
+	  mail.click();
+  }
 </script>
 
 </body>

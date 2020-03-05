@@ -5,12 +5,27 @@ font {
 h2 {
     color:#036;
 }
-
+.nav {
+    background-color:#AA6438;
+    float: left;
+    display: block;
+    text-align: center;
+    z-index: 1000;
+    position: relative;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+}
 body{
+    margin-top: 0;
     line-height:150%;
     padding-left:25%;
     padding-right:25%;
-    background-color: burlywood;
+    background: linear-gradient(to bottom right, #5DBCD2 60%,#DFC092 50%);
 }
 
 h1 {
@@ -20,14 +35,20 @@ h1 {
     text-align:center;
 }
 .button {
-    font-size: 30px;
+    font-size: 45px;
     border-radius: 12px;
     border:2px solid yellow;
     float:left;
-    background-color: darkgreen;
+    background-color: #AA6438;
 }
 .button-group .button:not(:last-child) {
     border-right: none;
+
+}
+#wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button-group .button:hover {
@@ -35,7 +56,7 @@ h1 {
 }
 h3 {
     color:white;
-    background-color:darkgreen;
+    background-color:#DFC092;
     padding-left:25%;
     padding-right:25%;
     font-size:75%;
@@ -50,10 +71,33 @@ h3 a:hover{
 }
 #center{
     display: block;
+    margin-top:90%;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
 }
 h3 a {
     padding: 20px;
+}
+#logo {
+    width:75px
+}
+#map {display: block; top: 200px; margin-left: auto; margin-right: auto; bottom: 0; width: 600px; height: 500px;}
+
+#video{
+    position: relative;
+    display: flex;
+    top: 85%;
+    margin-top: auto;
+    margin-right: auto;
+    margin-left: auto;
+    width: 600px;
+    height: 500px;
+
+}
+
+
+#vali{
+    display: block;
+    margin-top: 40%;
 }

@@ -8,19 +8,27 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css" rel="stylesheet" />
     <style>
         body { margin: 0; padding: 0; }
-        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        #map { position: absolute; top: 50px; left: 50px; bottom: 0; width: 60%; height: 85% }
     </style>
 </head>
 <body>
 <style>
-    button{
-        vertical-align: top;
+    button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        position: static;
+
     }
 </style>
 
-<div id="map">
-<button onclick="onClick()">Nappula</button>
-</div>
+<div id="map"></div>
+<button onclick="onClick()">Tallenna koordinaatit</button>
 
 
 <script>
@@ -50,7 +58,7 @@
         let coordinates = marker.getLngLat();
         localStorage.setItem("coordinates", coordinates);
         alert("Kiitos ilmoituksestasi!");
-        window.location.href = "form.html";
+        //window.location.href = "form.html";
     }
     map.addControl(new mapboxgl.NavigationControl());
 

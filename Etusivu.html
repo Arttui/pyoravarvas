@@ -2,15 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Etusivu</title>
+    <title>BikeToe</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css" rel="stylesheet" />
 </head>
 <body>
-<h1>Bike Toe</h1>
-<div class="button-group">
-<button class="button"><a href="">Kartta</a></button>
-<button class="button"><a href="">Login</a></button>
-<button class="button"><a href="">Yhteystiedot</a></button>
+<div class="nav sticky">
+    <div class="button-group" id="wrapper">
+        <button><a href="#home"><img id="logo" src="kuvat/placeholderlogo.png"></a></button>
+        <button class="button"><a href="Ilmoita">Ilmoita</a></button>
+        <button class="button"><a href="Tekijät">Tekijät</a></button>
+    </div>
 </div>
-<img id="center" src="kuvat/placeholderlogo.png">
+<div id="map">
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ0dHVpIiwiYSI6ImNrNm1oNXlocTBuazIzZmxzbHZlaG02OHYifQ.psK_iOjBfhEOvFdasu4bBg';
+        let coordinates = document.getElementById('coordinates');
+        let map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [24.8, 60.2],
+            zoom: 9
+        });
+
+
+        let marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([24.8, 60.2])
+            .addTo(map);
+
+        function onDragEnd() {
+            marker.getLngLat();
+        }
+
+        marker.on('dragend', onDragEnd);
+
+        function onClick() {
+            let coordinates = marker.getLngLat();
+            localStorage.setItem("coordinates", coordinates);
+            alert("Kiitos ilmoituksestasi!");
+            window.location.href = "form.html";
+        }
+        map.addControl(new mapboxgl.NavigationControl());
+
+        map.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl
+            })
+        );
+
+
+    </script>
+</div>
+<div id="vali">
+    <video id="video" controls src="Keksimainos.mp4"></video>
+</div>
+</body>
 </html>

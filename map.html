@@ -6,34 +6,44 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css" rel="stylesheet" />
-    <style>
-        body { margin: 0; padding: 0; }
-        #map { position: absolute; top: 50px; left: 50px; bottom: 0; width: 60%; height: 85% }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+<style>#map { position: absolute; top: 80px; left: 50px; bottom: 0; width: 60%; height: 85%}</style>
 </head>
-<body>
-<style>
-    button {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        position: static;
-
-    }
-</style>
-
+<body id="body2">
 <div id="map"></div>
-<button onclick="onClick()">Tallenna koordinaatit</button>
+<div class="nav sticky">
+    <div class="button-group" id="wrapper">
+        <button><a href="Etusivu.html"><img id="logo" src="kuvat/placeholderlogo.png"></a></button>
+        <button class="button"><a href="map.html">Ilmoita</a></button>
+        <button class="button"><a href="tekijat.html">Tekijät</a></button>
+    </div>
+</div>
+<form id="myform" method="post">
+    <label>Sähköposti:</label>
+    <input type="text" name="user_email" />
+    <label>Puh.numero:</label>
+    <input type="text" name="contact_number" />
+    <label>Viesti:</label>
+    <input type="text" id="viesti" name="message" />
+    <label>Nimi:</label>
+    <input type="text" name="user_name" />
+    <br><br>
+    <button>
+        Send
+    </button>
+</form>
 
+<button id="button2" onclick="onClick()">Tallenna koordinaatit</button>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init("user_Hsa6qVKtiAIiEYzLpbrtm");
+    })();
+</script>
 
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ0dHVpIiwiYSI6ImNrNm1oNXlocTBuazIzZmxzbHZlaG02OHYifQ.psK_iOjBfhEOvFdasu4bBg';
-    let coordinates = document.getElementById('coordinates');
     let map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
@@ -56,9 +66,8 @@
 
     function onClick() {
         let coordinates = marker.getLngLat();
-        localStorage.setItem("coordinates", coordinates);
-        alert("Kiitos ilmoituksestasi!");
-        //window.location.href = "form.html";
+        console.log(coordinates);
+        document.getElementById("viesti").value = "Pyörän sijainti: " + coordinates;
     }
     map.addControl(new mapboxgl.NavigationControl());
 
@@ -69,8 +78,27 @@
         })
     );
 
+    var myform = $("form#myform");
+    myform.submit(function(event){
+        event.preventDefault();
+
+        // Change to your service ID, or keep using the default service
+        var service_id = "gmail";
+        var template_id = "contant_form";
+
+        myform.find("button").text("Sending...");
+        emailjs.sendForm(service_id,template_id,myform[0])
+            .then(function(){
+                alert("Sent!");
+                myform.find("button").text("Send");
+            }, function(err) {
+                alert("Send email failed!\r\n Response:\n " + JSON.stringify(err));
+                myform.find("button").text("Send");
+            });
+        return false;
+    });
+
 
 </script>
-
 </body>
 </html>

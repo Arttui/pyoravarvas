@@ -47,6 +47,7 @@ h1 {
     border:2px solid yellow;
     float:left;
     background-color: #AA6438;
+    box-shadow: 10px 5px 5px black;
 }
 .button-group .button:not(:last-child) {
     border-right: none;

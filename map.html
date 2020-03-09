@@ -27,13 +27,13 @@
     <input type="text" name="user_email" />
     <label>Puh.numero:</label>
     <input type="text" name="contact_number" />
-    <label>Viesti:</label>
+    <label>Sijainti:</label>
     <input type="text" id="viesti" name="message" />
-    <label>Nimi:</label>
+    <label>Pyörän nimi:</label>
     <input type="text" name="user_name" />
     <br><br>
     <button>
-        Send
+        Lähetä
     </button>
 </form>
 
@@ -58,10 +58,10 @@ myform.find("button").text("Sending...");
 emailjs.sendForm(service_id,template_id,myform[0])
 .then(function(){
 alert("Lähetetty!");
-myform.find("button").text("Send");
+myform.find("button").text("Lähetä");
 }, function(err) {
 alert("Lähettäminen epäonnistui!\r\n Response:\n " + JSON.stringify(err));
-myform.find("button").text("Send");
+myform.find("button").text("Lähetä");
 });
 return false;
 });

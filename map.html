@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>Ilmoita</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="style.css">
-<style>#map { position: absolute; top: 100px; left: 50px; bottom: 0; width: 60%; height: 85%}</style>
+    <style>#map { position: absolute; top: 100px; left: 50px; bottom: 0; width: 60%; height: 85%}</style>
 </head>
 <body id="body2">
 <div id="map"></div>
 <div class="nav sticky">
     <div class="button-group" id="wrapper">
-        <button class="logo"><a href="Etusivu.html"><img id="logo" src="kuvat/pyoravarvasLogo.png"></a></button>
+        <button class="logo"><a href="Etusivu.html"><img id="logo" alt="asd" src="kuvat/pyoravarvasLogo.png"></a></button>
         <div>
             <button class="button"><a href="map.html">Ilmoita</a></button>
             <button class="button"><a href="Tekijat.html">Tekijät</a></button>
         </div>
         <div style="width: 81px"></div>
     </div>
-</div>
 </div>
 <form id="myform" method="post">
     <label>Sähköposti:</label>
@@ -39,32 +38,32 @@
 
 <button id="button2" onclick="onClick()">Tallenna koordinaatit</button>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
-<script type="text/javascript">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+<script>
     (function(){
-      emailjs.init("user_aEaql6IQnrvBMIwSagYZo");
+        emailjs.init("user_aEaql6IQnrvBMIwSagYZo");
     })();
 </script>
 <script>
-var myform = $("form#myform");
-myform.submit(function(event){
-event.preventDefault();
+    var myform = $("form#myform");
+    myform.submit(function(event){
+        event.preventDefault();
 
-  var service_id = "gmail";
-  var template_id = "bikeform";
+        var service_id = "gmail";
+        var template_id = "bikeform";
 
-myform.find("button").text("Sending...");
-emailjs.sendForm(service_id,template_id,myform[0])
-.then(function(){
-alert("Lähetetty!");
-myform.find("button").text("Lähetä");
-}, function(err) {
-alert("Lähettäminen epäonnistui!\r\n Response:\n " + JSON.stringify(err));
-myform.find("button").text("Lähetä");
-});
-return false;
-});
+        myform.find("button").text("Sending...");
+        emailjs.sendForm(service_id,template_id,myform[0])
+            .then(function(){
+                alert("Lähetetty!");
+                myform.find("button").text("Lähetä");
+            }, function(err) {
+                alert("Lähettäminen epäonnistui!\r\n Response:\n " + JSON.stringify(err));
+                myform.find("button").text("Lähetä");
+            });
+        return false;
+    });
 
 </script>
 

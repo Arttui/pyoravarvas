@@ -30,11 +30,14 @@
             zoom: 9
         });
 
-        var popup = new mapboxgl.Popup({ offset: 25 }).setText(
-            'Osoite: Lintuvaarantie 8, 02650 Espoo Tuntomerkit: Vihreä maastopyörä'
+        var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+            '<img src="kuvat/tunturiVihreaMaastopyora.jpg" alt="Kuva 1" height="150" width="215">\n' +
+            'Osoite: Lintuvaarantie 8, 02650 Espoo Tuntomerkit: Vihreä Tunturi maastopyörä'
+
         );
 
-        var popup2 = new mapboxgl.Popup({ offset: 25 }).setText(
+        var popup2 = new mapboxgl.Popup({ offset: 25 }).setHTML(
+            '<img src="kuvat/vaalenpunainenJopo.jpg" alt="Kuva 2" height="150" width="215">\n' +
             'Osoite: Sammentie 8, 02260 Espoo Tuntomerkit: Vaaleanpunainen Jopo'
         );
 
